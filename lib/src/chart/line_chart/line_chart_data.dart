@@ -59,16 +59,17 @@ class LineChartData extends AxisChartData with EquatableMixin {
     super.baselineY,
     super.clipData = const FlClipData.none(),
     super.backgroundColor,
+    bool isEnableCache = false,
   }) : super(
           touchData: lineTouchData,
           minX:
-              minX ?? LineChartHelper.calculateMaxAxisValues(lineBarsData).minX,
+              minX ?? LineChartHelper.calculateMaxAxisValues(lineBarsData, isEnableCache: isEnableCache).minX,
           maxX:
-              maxX ?? LineChartHelper.calculateMaxAxisValues(lineBarsData).maxX,
+              maxX ?? LineChartHelper.calculateMaxAxisValues(lineBarsData, isEnableCache: isEnableCache).maxX,
           minY:
-              minY ?? LineChartHelper.calculateMaxAxisValues(lineBarsData).minY,
+              minY ?? LineChartHelper.calculateMaxAxisValues(lineBarsData, isEnableCache: isEnableCache).minY,
           maxY:
-              maxY ?? LineChartHelper.calculateMaxAxisValues(lineBarsData).maxY,
+              maxY ?? LineChartHelper.calculateMaxAxisValues(lineBarsData, isEnableCache: isEnableCache).maxY,
         );
 
   /// [LineChart] draws some lines in various shapes and overlaps them.

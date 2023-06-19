@@ -11,15 +11,16 @@ class LineChartHelper {
       _cachedResults = {};
 
   static LineChartMinMaxAxisValues calculateMaxAxisValues(
-    List<LineChartBarData> lineBarsData,
-  ) {
+    List<LineChartBarData> lineBarsData, {
+    bool isEnableCache = true,
+  }) {
     if (lineBarsData.isEmpty) {
       return const LineChartMinMaxAxisValues(0, 0, 0, 0);
     }
 
     final listWrapper = lineBarsData.toWrapperClass();
 
-    if (_cachedResults.containsKey(listWrapper)) {
+    if (isEnableCache && _cachedResults.containsKey(listWrapper)) {
       return _cachedResults[listWrapper]!.copyWith(readFromCache: true);
     }
 
@@ -69,7 +70,9 @@ class LineChartHelper {
     }
 
     final result = LineChartMinMaxAxisValues(minX, maxX, minY, maxY);
-    _cachedResults[listWrapper] = result;
+    if (isEnableCache) {
+      _cachedResults[listWrapper] = result;
+    }
     return result;
   }
 }
